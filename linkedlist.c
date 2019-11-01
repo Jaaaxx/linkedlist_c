@@ -4,7 +4,7 @@
 #include <stdarg.h>
 void append(list l, int val) {
     node* n = (node*) malloc(sizeof(node));
-    n->val = val;
+    n->val = &val;
     node *curr = l.head;
     while (curr->next) {
         curr = curr->next;
@@ -31,6 +31,28 @@ list create(int count, ...) {
     va_end(vaList);
     l.head = ptr[0];
     return l;
+}
+
+list create_with_node(node* n) {
+    list l;
+    l.head = n;
+    return l;
+}
+
+void append_with_node(list l, node* n) {
+    node* curr = l.head;
+    while(curr->next) {
+        curr = curr->next;
+    }
+    curr->next = n;
+}
+
+void append_with_list(list origin, list second) {
+    node* curr = origin.head;
+    while(curr->next) {
+        curr = curr->next;
+    }
+    curr->next = second.head;
 }
 
 int size(list l) {

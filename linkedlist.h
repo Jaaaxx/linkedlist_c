@@ -9,8 +9,9 @@ typedef struct node {
     struct node *next;
 } node;
 
-struct list;
-struct node;
+list create_with_node(node* n);
+void append_with_list(list fl, list al);
+void append_with_node(list l, node* n);
 void append(list l, int val);
 list create(int count, ...);
 int size(list l);

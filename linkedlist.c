@@ -4,7 +4,7 @@
 #include <stdarg.h>
 void append(list l, int val) {
     node* n = (node*) malloc(sizeof(node));
-    n->val = &val;
+    n->val = val;
     node *curr = l.head;
     while (curr->next) {
         curr = curr->next;

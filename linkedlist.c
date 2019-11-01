@@ -33,6 +33,28 @@ list create(int count, ...) {
     return l;
 }
 
+list create_with_node(node* n) {
+    list l;
+    l.head = n;
+    return l;
+}
+
+void append_with_node(list l, node* n) {
+    node* curr = l.head;
+    while(curr->next) {
+        curr = curr->next;
+    }
+    curr->next = n;
+}
+
+void append_with_list(list origin, list second) {
+    node* curr = origin.head;
+    while(curr->next) {
+        curr = curr->next;
+    }
+    curr->next = second.head;
+}
+
 int size(list l) {
     if (!l.head) {
         return -1;
@@ -48,14 +70,11 @@ int size(list l) {
 
 node* search(list l, int val) {
     node* curr = l.head;
-    while(curr->next) {
+    while(curr) {
         if (curr->val == val) {
             return curr;
         }
         curr = curr->next;
-    }
-    if (curr->val == val) {
-        return curr;
     }
     return NULL;
 }
@@ -63,15 +82,12 @@ node* search(list l, int val) {
 int index_search(list l, int val) {
     int c = 0;
     node* curr = l.head;
-    while(curr->next) {
+    while(curr) {
         if (curr->val == val) {
             return c;
         }
         curr = curr->next;
         c++;
-    }
-    if (curr->val == val) {
-        return c;
     }
     return -1;
 }
